@@ -122,6 +122,8 @@ defmodule Kazan.Server do
     cert_from_base64(certdata)
   end
 
+  defp get_cert(_, _), do: nil
+
   @spec auth_from_user(Map.t(), String.t()) :: auth_t
   defp auth_from_user(
          %{"client-certificate" => cert_file, "client-key" => key_file},
@@ -155,9 +157,7 @@ defmodule Kazan.Server do
     }
   end
 
-  defp auth_from_user(_user, _basepath) do
-    nil
-  end
+  defp auth_from_user(_user, _basepath), do: nil
 
   # Reads data of a particular type from a .pem file.
   defp cert_from_pem(nil, _), do: nil
